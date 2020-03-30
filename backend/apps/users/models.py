@@ -11,7 +11,7 @@ class User(AbstractUser):
     location = models.CharField(max_length=100)
     phone = PhoneField(blank=True, help_text='Your phone number')
     about_me = models.CharField(max_length=400)
-    things_i_love = models.CharField(max_length=400)
+    things_loved = models.CharField(max_length=400)
     date_joined = models.DateTimeField(verbose_name='date joined',auto_now_add=True)
     avatar = models.ImageField(upload_to='', blank=True)
 
