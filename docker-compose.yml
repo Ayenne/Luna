@@ -15,7 +15,7 @@ services:
     restart: always
     env_file:
       - ./envs/dev.env
-    command: sh -c "python manage.py migrate && python manage.py runserver 0:8000"
+    command: "sh -c python manage.py migrate && python manage.py runserver 0:8000"
     ports:
       - '8000:8000'
       - '4777:22'
@@ -31,7 +31,7 @@ services:
     restart: always
     env_file:
       - ./envs/dev.env
-    command: sh -c "cd /frontend && npm i && npm start"
+    command: "sh -c cd /frontend && npm i && npm start"
     ports:
       - '3000:3000'
     links:
