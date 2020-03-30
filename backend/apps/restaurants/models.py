@@ -1,18 +1,11 @@
 from django.db import models
+from apps.categories.models import Category
 from phone_field import PhoneField
 from django_countries.fields import CountryField
 
 
 class Restaurant(models.Model):
 
-    CATEGORY = (
-        ('FRENCH', 'French'),
-        ('ITALIAN', 'Italian'),
-        ('PERUVIAN', 'Peruvian'),
-        ('CHINESE', 'Chinese'),
-        ('JAPANESE', 'Japanese'),
-        ('AMERICAN', 'American')
-    )
 
     PRICE_LEVEL = (
         ('1', 'Inexpensive'),
@@ -22,10 +15,12 @@ class Restaurant(models.Model):
     )
 
     name = models.TextField(max_length=90)
-    category = models.CharField(
-        max_length=100,
-        choices=CATEGORY,
-        default='FRENCH'
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='restaurants'
     )
     country = CountryField(blank_label='(select country)')
     street = models.CharField(max_length=270)
