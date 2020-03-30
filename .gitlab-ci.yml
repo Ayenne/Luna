@@ -56,6 +56,6 @@ deploy to prod:
     - master
     - tags
   script:
-    - docker-compose -f docker-compose.deploy.yml pull
-    - docker-compose -f docker-compose.deploy.yml down --remove-orphans
-    - docker-compose -f docker-compose.deploy.yml up -d
+    - docker-compose -f docker-compose.prod.yml pull
+    - docker-compose -f docker-compose.prod.yml down --remove-orphans
+    - docker-compose -f docker-compose.prod.yml up -d
