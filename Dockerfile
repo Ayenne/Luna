@@ -13,7 +13,7 @@ RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - && apt-get install -
 #RUN mkdir /var/run/sshd
 
 # user:password to have access to container from pycharm
-#RUN echo 'root:screencast' | chpasswd
+RUN echo 'root:screencast' | chpasswd
 #RUN sed -i '/PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
