@@ -1,0 +1,6 @@
+name: scorpio-luna
+dependencies:
+  - python=3.6
+  - pip:
+      - django==3.0.3
+      - djangorestframework==3.11.0
