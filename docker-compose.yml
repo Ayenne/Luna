@@ -31,7 +31,8 @@ services:
     restart: always
     env_file:
       - ./envs/dev.env
-    command: sh -c "cd /frontend && npm start"
+    stdin_open: true  # Required for the webpack server to stay alive in docker after 3.4.1
+    command: sh -c "cd /frontend && npm i && npm start"
     ports:
       - '3000:3000'
     links:
