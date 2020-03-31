@@ -18,7 +18,6 @@ class LoginForm extends Component {
   };
 
   LogIn(e) {
-      console.log('henlo');
         e.preventDefault();
         store.dispatch(loginAction(this.state.email, this.state.password));
     }
