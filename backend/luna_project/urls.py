@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
+api_patterns = [
+    path('reviews/', include('apps.reviews.urls'))
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +30,5 @@ urlpatterns = [
     path('backend/api/users/', include('apps.users.urls')),
     path('backend/api/restaurants/', include('apps.restaurants.urls')),
     path('backend/api/category/', include('apps.categories.urls')),
+    path('backend/api/', include(api_patterns))
 ]
