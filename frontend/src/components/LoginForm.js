@@ -4,8 +4,6 @@ import styled from "styled-components";
 import loginAction from '../store/actions/login';
 import store from '../store/index';
 
-import "./LoginForm.css";
-
 
 const SubmitFormContainer = styled.div`
     display: flex;
