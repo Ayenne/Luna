@@ -66,9 +66,9 @@ class LikeOrDislikeReview(GenericAPIView):
         user = request.user
         reviews = Review.objects.filter(fk_Like_to_Review__idUser=self.request.user)
         if review_to_save in reviews:
-            user.fk_Like_to_User.remove(review_to_save)
+            user.fk_Review_to_User.remove(review_to_save)
             return Response(self.get_serializer(instance=review_to_save).data)
-        user.fk_Like_to_User.add(review_to_save)
+        user.fk_Review_to_User.add(review_to_save)
         return Response(self.get_serializer(instance=review_to_save).data)
 
 
