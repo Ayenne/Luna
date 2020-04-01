@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.db.models import Q
 
 from apps.restaurants.models import Restaurant
+from apps.reviews.models.models_likes import Like
 from apps.reviews.models.models_reviews import Review
 from apps.reviews.serializers.serializers_reviews import ReviewSerializer
 
@@ -64,11 +65,12 @@ class LikeOrDislikeReview(GenericAPIView):
     def post(self, request, *args, **kwargs):
         review_to_save = self.get_object()
         user = request.user
-        reviews = Review.objects.filter(fk_Like_to_Review__idUser=self.request.user)
-        if review_to_save in reviews:
-            user.fk_Review_to_User.remove(review_to_save)
+        like = Like.objects.filter(idUser=self.request.user, idReview=review_to_save.id)
+        if like:
+            like.delete()
             return Response(self.get_serializer(instance=review_to_save).data)
-        user.fk_Review_to_User.add(review_to_save)
+        like = Like(idUser=self.request.user, idReview=review_to_save)
+        like.save()
         return Response(self.get_serializer(instance=review_to_save).data)
 
 

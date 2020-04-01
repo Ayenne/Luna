@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView, CreateAPIView
+from rest_framework.generics import RetrieveDestroyAPIView, CreateAPIView
 from rest_framework.response import Response
 
 from apps.reviews.serializers.serializers_comments import CommentSerializer
@@ -7,18 +7,14 @@ from apps.reviews.models.models_comments import Comment
 from apps.reviews.models.models_reviews import Review
 
 
-class ListUserCommentsDestroyReviewComments(GenericAPIView):
+class ListUserCommentsDestroyReviewComments(RetrieveDestroyAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
 
     def get(self, request, *args, **kwargs):
-        queryset
-        idUser = self.get_object
-        comments = Comment.objects.filter(idUser=idUser).order_by("-date_created")
-        return Response(self.get_serializer(instance=comments).data)
-
-    def delete(self):
-        pass
+        user = self.kwargs.get("pk")
+        comment = Comment.objects.filter(idUser=user).order_by("-id")
+        return Response(self.get_serializer(instance=comment, many=True).data)
 
 
 class CreateReviewComment(CreateAPIView):
