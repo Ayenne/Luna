@@ -61,7 +61,7 @@ class LikeOrDislikeReview(GenericAPIView):
     queryset = Review.objects.all()
     permission_classes = [IsAuthenticated, IsNotOwner]
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         review_to_save = self.get_object()
         user = request.user
         reviews = Review.objects.filter(fk_Like_to_Review__idUser=self.request.user)

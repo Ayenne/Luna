@@ -6,7 +6,7 @@ from apps.users.serializers import UserSerializer
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    idUser = UserSerializer(read_only=True)
 
     class Meta:
         model = Review
