@@ -16,9 +16,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt import views as jwt_views
 
+api_patterns = [
+    path('reviews/', include('apps.reviews.urls'))
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('backend/api/test/', include('apps.testing.urls'))
+    path('backend/api/token/', jwt_views.TokenObtainPairView.as_view()),
+    path('backend/api/token/refresh/', jwt_views.TokenRefreshView.as_view()),
+    path('backend/api/token/verify/', jwt_views.TokenVerifyView.as_view()),
+    path('backend/api/users/', include('apps.users.urls')),
+    path('backend/api/restaurants/', include('apps.restaurants.urls')),
+    path('backend/api/category/', include('apps.categories.urls')),
+    path('backend/api/', include(api_patterns))
 ]

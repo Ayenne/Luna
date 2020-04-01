@@ -13,7 +13,7 @@ RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - && apt-get install -
 #RUN mkdir /var/run/sshd
 
 # user:password to have access to container from pycharm
-#RUN echo 'root:screencast' | chpasswd
+RUN echo 'root:screencast' | chpasswd
 #RUN sed -i '/PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
@@ -25,10 +25,10 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN mkdir -p /backend
 COPY ./backend/requirements.yml /backend/requirements.yml
 RUN /opt/conda/bin/conda env create -f /backend/requirements.yml
-ENV PATH /opt/conda/envs/scorpio-luna/bin:$PATH
+ENV PATH /opt/conda/envs/scorpio/bin:$PATH
 
 ENV PYTHONDONTWRITEBYTECODE 1
-RUN echo "source activate scorpio-luna" >~/.bashrc
+RUN echo "source activate scorpio" >~/.bashrc
 
 COPY ./scripts /scripts
 RUN chmod +x ./scripts*
