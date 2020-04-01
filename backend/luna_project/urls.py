@@ -18,17 +18,21 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
+from apps.restaurants.views import ListBestRestaurant
+
 api_patterns = [
-    path('reviews/', include('apps.reviews.urls'))
+    path('reviews/', include('apps.reviews.urls')),
+    path('token/', jwt_views.TokenObtainPairView.as_view()),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view()),
+    path('token/verify/', jwt_views.TokenVerifyView.as_view()),
+    path('users/', include('apps.users.urls')),
+    path('restaurants/', include('apps.restaurants.urls')),
+    path('category/', include('apps.categories.urls')),
+    path('home/', ListBestRestaurant.as_view())
+
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('backend/api/token/', jwt_views.TokenObtainPairView.as_view()),
-    path('backend/api/token/refresh/', jwt_views.TokenRefreshView.as_view()),
-    path('backend/api/token/verify/', jwt_views.TokenVerifyView.as_view()),
-    path('backend/api/users/', include('apps.users.urls')),
-    path('backend/api/restaurants/', include('apps.restaurants.urls')),
-    path('backend/api/category/', include('apps.categories.urls')),
     path('backend/api/', include(api_patterns))
 ]
