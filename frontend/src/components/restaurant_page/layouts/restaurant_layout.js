@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import Laderach from '../../../assets/laderach-banner.jpg';
-import { ReactComponent as Star} from '../../../assets/star.svg';
 import { ReactComponent as Clock} from '../../../assets/clock.svg';
 import { ReactComponent as Money} from '../../../assets/money.svg';
-
+import Stars from "../../Stars";
+import RestaurantReviews from "./restaurant_reviews";
 
 
 const BannerPhoto = styled.div`
@@ -59,22 +59,6 @@ const ReviewCount = styled.p`
     color: white;
 `;
 
-const Rating = styled.div`
-    height: 40px;
-    display: flex;
-`;
-
-const StarIcon = styled(Star)`
-    width: 30px;
-    height: 30px;
-    opacity: 0.6;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(96%) saturate(15%) hue-rotate(212deg) brightness(104%) contrast(104%);
-    ${props => props.lit && `
-        filter: brightness(0) saturate(100%) invert(80%) sepia(40%) saturate(867%) hue-rotate(4deg) brightness(109%) contrast(95%);
-        opacity: 1;
-    `}
-`;
-
 const Content = styled.div`
     display: flex;
 `;
@@ -88,46 +72,16 @@ const Info = styled.ul`
     background-color: #f5f5f5;
     li {
         display: flex;
-        justify-content: center;
-    }
-`;
-const OpeningTime = styled.div`
-    display: flex;
-    height: 58px;
-    border-bottom: solid 1px #d8d8d8;
-    width: 100%;
-    p {
-        margin-top: 22px;
-        margin-left: 25px;
-        width: 414px;
-        height: 24px;
+        align-items: center;
         font-size: 20px;
         font-weight: 300;
-        color: black;
+        svg {
+          padding: 15px 20px 15px 15px;
+        }
     }
-`;
-const ClockIcon = styled(Clock)`
-    margin-left: 20px;
-    margin-top: 20px;
-`;
-
-const PriceInfo = styled.div`
-    display: flex;
-    width: 414px;
-    height: 24px;
-    p {
-        font-family: Roboto;
-        margin-top: 13px;
-        margin-left: 23px;
-        font-size: 20px;
-        font-weight: 300;
-        color: black;
+    li + li {
+        border-top: solid 1px #d8d8d8;
     }
-`;
-
-const MoneyIcon = styled(Money)`
-    margin-left: 17px;
-    margin-top: 10px;
 `;
 
 const Inline = styled.div`
@@ -136,19 +90,28 @@ const Inline = styled.div`
   align-items: center;
 `;
 
-class Stars extends Component {
-    render() {
-        return (
-            <Rating>
-                <StarIcon lit={this.props.stars >= 1}/>
-                <StarIcon lit={this.props.stars >= 2}/>
-                <StarIcon lit={this.props.stars >= 3}/>
-                <StarIcon lit={this.props.stars >= 4}/>
-                <StarIcon lit={this.props.stars >= 5}/>
-            </Rating>
-        );
+const ButtonContainer = styled.div`
+    height: 40px;
+    padding: 29px;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        width: 200px;
+        height: 39px;
+        border-radius: 28px;
+        font-size: 16px;
+        text-align: center;
+        color: white;
+        background-color: #e47d31;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background: #e98539;
+        }
     }
-}
+`;
 
 class RestaurantView extends Component{
     render(){
@@ -162,7 +125,7 @@ class RestaurantView extends Component{
                                 <h3>Chocolatiers & Shops</h3>
                                 <Inline>
                                     <Stars stars={3}/>
-                                    <ReviewCount>0 reviews </ReviewCount>
+                                    <ReviewCount>4 reviews </ReviewCount>
                                 </Inline>
                             </About>
                         </CenteredContent>
@@ -170,16 +133,22 @@ class RestaurantView extends Component{
                     </BannerPhoto>
                     <CenteredContent>
                         <Content>
-                            <Reviews></Reviews>
+                            <Reviews>
+                                <RestaurantReviews/>
+                            </Reviews>
                             <Info>
                                 <li>
-                                    <ClockIcon/>
-                                    <p>Monday-Friday 9:00 am - 8:00 pm</p>
+                                    <Clock/>
+                                    <p>Monday - Friday 9:00 am - 8:00 pm</p>
                                 </li>
                                 <li>
-                                    <MoneyIcon/>
+                                    <Money/>
                                     <p>Price level: $$$</p>
                                 </li>
+                                <ButtonContainer>
+                                    <button>WRITE A REVIEW</button>
+                                    <button>EDIT DATA</button>
+                                </ButtonContainer>
                             </Info>
                         </Content>
                     </CenteredContent>

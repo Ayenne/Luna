@@ -35,7 +35,6 @@ class LoginForm extends Component {
               <button type="submit" onClick = {(e) => this.LogIn(e)}>Login</button>
             </form>
           </StyledForm>
-
       </div>
     );
   }
