@@ -22,7 +22,6 @@
 
 .footer-list-box {
     height: 24px;
-    font-family: Helvetica;
     font-size: 20px;
     text-align: center;
     color: #646363;
@@ -33,7 +32,6 @@
     justify-content: space-between;
     padding: 0px;
 }
-
 
 .footer-list-box li {
     margin-left: 30px;
@@ -49,12 +47,10 @@
     display: flex;
     justify-content: space-between;
     margin-right: 30px;
-
 }
 
 .footer-top-right-box img:hover {
     height: 50px;
-
 }
 
 .footer-bottom-container {
@@ -67,7 +63,6 @@
 .footer-bottom-container p {
     width: 124px;
     height: 14px;
-    font-family: Helvetica;
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
