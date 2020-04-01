@@ -36,7 +36,7 @@ class Review(models.Model):
         related_name="fk_Review_to_User",
         on_delete=models.CASCADE
     )
-    id_restaurant = models.ForeignKey(
+    idRestaurant = models.ForeignKey(
         to=Restaurant,
         related_name="fk_Review_to_Restaurant",
         on_delete=models.CASCADE

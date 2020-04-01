@@ -34,7 +34,7 @@ class ListBestRestaurant(ListAPIView):
     get:
     List the 4 best restaurants we've got in DTB
 
-        SQL request:
+        SQL request with Restaurant.objects.raw():
         SELECT restaurants_restaurant.*, AVG(reviews_review.rating) AS rating
         FROM restaurants_restaurant
         JOIN reviews_review ON restaurants_restaurant.id = reviews_review.id_restaurant_id
@@ -45,12 +45,7 @@ class ListBestRestaurant(ListAPIView):
     serializer_class = RestaurantSerializer
     queryset = Restaurant
 
-    # def get_queryset(self):
-    #     restaurants = Restaurant.objects.all().order_by("-rating")[:4]
-    #     return Response(self.get_serializer(instance=restaurants, many=True).data)
-    # reviews = Review.objects.all().annotate(Avg("rating"))
-    # restaurants = Restaurant.objects.filter(fk_Review_to_Restaurant=reviews)[:4]
-
     def get(self, request, *args, **kwargs):
-        restaurants = Restaurant.objects.raw("SELECT restaurants_restaurant.*, AVG(reviews_review.rating) AS rating FROM restaurants_restaurant JOIN reviews_review ON restaurants_restaurant.id = reviews_review.id_restaurant_id GROUP BY restaurants_restaurant.id ORDER BY AVG(reviews_review.rating) DESC LIMIT 4")
+        restaurants = Restaurant.objects.annotate(avg_rating=Avg('fk_Review_to_Restaurant__rating')).order_by('-avg_rating').all()[:4]
+        # restaurants = Restaurant.objects.raw("SELECT restaurants_restaurant.*, AVG(reviews_review.rating) AS rating FROM restaurants_restaurant JOIN reviews_review ON restaurants_restaurant.id = reviews_review.id_restaurant_id GROUP BY restaurants_restaurant.id ORDER BY AVG(reviews_review.rating) DESC LIMIT 4")
         return Response(self.get_serializer(instance=restaurants, many=True).data)
