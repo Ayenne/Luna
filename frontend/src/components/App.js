@@ -9,7 +9,7 @@ import Registration from "./RegistrationPage";
 import Restaurant from "./restaurant_page/Restaurant"
 import RegistrationCopy from "./RegistrationCopyPage";
 
-import Home from "./Home";
+import Home from "./home_page";
 
 
 class App extends Component {
@@ -20,8 +20,8 @@ class App extends Component {
                 <BrowserRouter>
                     <NavigationBar />
                         <Switch>
-                            <Route exact={ true } path="/login" component={LoginForm} />
                             <Route exact={ true } path="/" component={Home} />
+                            <Route exact={ true } path="/login" component={LoginForm} />
                             <Route exact={ true } path="/register" component={Registration} />
                             <Route exact={ true } path="/restaurant" component={Restaurant} />
                         </Switch>
