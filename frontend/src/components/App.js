@@ -7,7 +7,6 @@ import LoginForm from "./LoginForm";
 import Registration from "./RegistrationPage";
 import Restaurant from "./restaurant_page/Restaurant"
 import RegistrationCopy from "./RegistrationCopyPage";
-import UserProfileItem from "./UserProfile";
 import NavigationBar from './NavigationBar'
 import Footer from './Footer';
 import UserProfilePage from "./UserProfilePage";
