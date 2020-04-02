@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import Laderach from '../../../assets/laderach-banner.jpg';
+import Background from '../../../assets/banner.jpg';
 import { ReactComponent as Clock} from '../../../assets/clock.svg';
 import { ReactComponent as Money} from '../../../assets/money.svg';
 import Stars from "../../Stars";
+import Dollars from "../../Dollars";
 import RestaurantReviews from "./restaurant_reviews";
 
 
 const BannerPhoto = styled.div`
     height: 496px;
     margin-top: 72px;
-    background-image: url(${Laderach});
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    background-image: url(${Background});  
 `;
 const Banner = styled.div`
     height: 204px;
@@ -46,7 +47,6 @@ const About = styled.div`
         height: 29px;
         font-size: 24px;
         font-weight: 300;
-        text-align: center;
         color: white;
     }
 `;
@@ -78,6 +78,7 @@ const Info = styled.ul`
         svg {
           padding: 15px 20px 15px 15px;
         }
+        div { svg { padding: 3px; } }
     }
     li + li {
         border-top: solid 1px #d8d8d8;
@@ -126,8 +127,8 @@ class RestaurantView extends Component{
                                 <h2>{this.props.restaurant.name}</h2>
                                 <h3>{this.props.restaurant.category.name}</h3>
                                 <Inline>
-                                    <Stars stars={3}/>
-                                    <ReviewCount>4 reviews </ReviewCount>
+                                    <Stars stars={this.props.restaurant.avg_rating.rating}/>
+                                    <ReviewCount>{this.props.restaurant.total_of_reviews} reviews </ReviewCount>
                                 </Inline>
                             </About>
                         </CenteredContent>
@@ -142,11 +143,11 @@ class RestaurantView extends Component{
                             <Info>
                                 <li>
                                     <Clock/>
-                                    <p>Monday - Friday 9:00 am - 8:00 pm</p>
+                                    <p>{this.props.restaurant.opening_hours}</p>
                                 </li>
                                 <li>
                                     <Money/>
-                                    <p>Price level: $$$</p>
+                                    <Dollars dollars={this.props.restaurant.price_level}/>
                                 </li>
                                 <ButtonContainer>
                                     <button>WRITE A REVIEW</button>

@@ -17,6 +17,11 @@ const NavigationBar = styled.div`
     z-index: 500;
 `;
 
+const Links = styled(Link)`
+    text-decoration: none;
+    color: black;
+`;
+
 const LunaLogo = styled.img`
     margin-left: 20px;
     width: 101px;
@@ -78,7 +83,8 @@ const LoginButton = styled(ActionButton)`
 const NavBar = () => {
     return (
         <NavigationBar>
-            <LunaLogo src={logo} alt="Luna"/>
+
+            <Links to='/'><LunaLogo src={logo} alt="Luna"/></Links>
             <NavSectionRight>
                 <Menu>
                     <MenuItem to="/" active>Home</MenuItem>

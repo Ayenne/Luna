@@ -4,6 +4,7 @@ const initState = {
     reviews: [],
     query: '',
     current_restaurant: undefined,
+    login_error: '',
 };
 
 
@@ -12,6 +13,12 @@ const reducer = (state = initState, action) => {
         return {
             ...state,
             token: action.payload
+        }
+    }
+    else if (action.type === "INVALID_LOGIN") {
+        return {
+            ...state,
+            login_error: action.payload
         }
     }
     else if (action.type === "LOGOUT") {
@@ -43,7 +50,7 @@ const reducer = (state = initState, action) => {
      else if (action.type === "LIKE_REVIEW") {
         return {
             ...state,
-            posts: state.reviews.map((review) => {
+            reviews: state.reviews.map((review) => {
                 if (review.id === action.payload) {
                     return {
                         ...review,
