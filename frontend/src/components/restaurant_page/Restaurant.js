@@ -4,15 +4,15 @@ import store from '../../store/index';
 import serverUrl from "../../server";
 import RestaurantView from "./layouts/restaurant_layout"
 
-
-
 class Restaurant extends Component{
     componentDidMount() { this.fetchReviews() }
 
     fetchReviews() {
-        const base_address = serverUrl + 'reviews/';
+        const base_address = serverUrl + 'reviews/restaurant/3/';
+        let suffix = '';
+        if (this.props.query.length > 0) suffix += "?search=" + this.props.query;
 
-        fetch(base_address, {
+        fetch(base_address + suffix, {
             method: 'GET',
             headers: new Headers({'Authorization': 'Bearer ' + this.props.token})
         })
@@ -32,5 +32,15 @@ class Restaurant extends Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        token: state.token,
+        reviews: state.reviews,
+        query: state.query,
+    }
+};
+const connection = connect(mapStateToProps);
+const ConnectedRestaurant = connection(Restaurant);
 
-export default Restaurant;
+export default ConnectedRestaurant;
