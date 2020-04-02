@@ -8,7 +8,7 @@ class Reviews extends Component {
             <ul>
                 {this.props.reviews ?
                     this.props.reviews.map((review) => {
-                        return <Review key={review.id} review={review}/>
+                        return (<Review key={review.id} review={review}/>)
                     }) : null
                 }
             </ul>

@@ -26,8 +26,8 @@ class App extends Component {
                             <Route exact={ true } path="/" component={Home} />
                             <Route exact={ true } path="/login" component={LoginForm} />
                             <Route exact={ true } path="/register" component={Registration} />
-                            <Route exact={ true } path="/restaurant" component={Restaurant} />
-                            <Route exact={ true } path="/profile" component={UserProfilePage} />
+                            <Route exact={ true } path="/restaurant/:id" component={Restaurant} />
+                            <Route exact={ true } path="/userprofile" component={UserProfilePage} />
                         </Switch>
                     <Footer/>
                 </BrowserRouter>

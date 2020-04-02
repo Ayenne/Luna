@@ -5,6 +5,8 @@ import Avatar from "../../assets/avatar.jpg";
 import Stars from "../Stars";
 import styled from "styled-components";
 import Time from 'react-time';
+import likeAction from '../../store/actions/like_review';
+import store from "../../store";
 
 
 const ReviewWrapper = styled.div`
@@ -87,11 +89,7 @@ const ActionButton = styled.button`
 const LikeButton = styled(ActionButton)`
     border-top-left-radius: 28px;
     border-bottom-left-radius: 28px;
-    img{
-        width: 17px;
-        height: 21px;
-        background-color: #ffffff;
-    }
+    background-color: ${(props) => props.clicked ? "#e98539" : "rgba(145, 145, 145, 0.6)"};
 `;
 const CommentButton = styled(ActionButton)`
     border-top-right-radius: 28px;
@@ -102,6 +100,10 @@ const CommentButton = styled(ActionButton)`
 
 class Review extends Component {
 
+    likeReview() {
+        store.dispatch(likeAction(this.props.review.id, this.props.token));
+    }
+
     render() {
         return(
             <>
@@ -110,7 +112,7 @@ class Review extends Component {
                         <img src = {Avatar}/>
                         <Author>
                             <p>{this.props.review.idUser.first_name} {this.props.review.idUser.last_name}</p>
-                            <p>23 Reviews in total</p>
+                            <p>{this.props.review.idUser.number_of_reviews} Reviews in total</p>
                         </Author>
                         <Score>
                             <Stars stars={this.props.review.rating}/>
@@ -123,8 +125,9 @@ class Review extends Component {
                     </Header>
                         <ReviewContent review={this.props.review}></ReviewContent>
                     <Footer>
-                        <LikeButton>Like 23</LikeButton>
-                        <CommentButton>Comment 4</CommentButton>
+                        <LikeButton onClick={() => this.likeReview()} clicked={this.props.review.current_user_liked}>
+                            Like {this.props.review.amount_of_likes}</LikeButton>
+                        <CommentButton>Comment {this.props.review.amount_of_comments}</CommentButton>
                         <p>View all comments</p>
                     </Footer>
                 </ReviewWrapper>

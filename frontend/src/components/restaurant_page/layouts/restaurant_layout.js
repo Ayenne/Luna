@@ -113,16 +113,18 @@ const ButtonContainer = styled.div`
     }
 `;
 
+
 class RestaurantView extends Component{
     render(){
+        console.log(this.props.restaurant);
         return(
             <>
                     <BannerPhoto>
                         <Banner>
                         <CenteredContent>
                             <About>
-                                <h2>Laderach Chocolates</h2>
-                                <h3>Chocolatiers & Shops</h3>
+                                <h2>{this.props.restaurant.name}</h2>
+                                <h3>{this.props.restaurant.category.name}</h3>
                                 <Inline>
                                     <Stars stars={3}/>
                                     <ReviewCount>4 reviews </ReviewCount>
@@ -135,6 +137,7 @@ class RestaurantView extends Component{
                         <Content>
                             <Reviews>
                                 <RestaurantReviews/>
+                                <Reviews />
                             </Reviews>
                             <Info>
                                 <li>
@@ -152,9 +155,11 @@ class RestaurantView extends Component{
                             </Info>
                         </Content>
                     </CenteredContent>
+
             </>
         )
     }
 }
 
-export default RestaurantView
+
+export default RestaurantView;

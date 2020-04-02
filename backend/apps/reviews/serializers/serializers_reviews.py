@@ -11,10 +11,17 @@ class ReviewSerializer(serializers.ModelSerializer):
     idRestaurant = RestaurantSerializer(read_only=True)
     amount_of_likes = serializers.SerializerMethodField()
     amount_of_comments = serializers.SerializerMethodField()
+    current_user_liked = serializers.SerializerMethodField()
+
+    def get_current_user_liked(self, review):
+        user = self.context['request'].user
+        if review in user.review_likes.all():
+            return True
+        return False
 
     @staticmethod
     def get_amount_of_likes(review):
-        return review.fk_Like_to_Review.all().count()
+        return review.likes.all().count()
 
     @staticmethod
     def get_amount_of_comments(review):
