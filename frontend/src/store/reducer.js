@@ -1,8 +1,9 @@
 const initState = {
-        token: localStorage.getItem('token'),
-        reviews: [],
-        query: '',
+    token: localStorage.getItem('token'),
+    reviews: [],
+    query: '',
 };
+
 
 const reducer = (state = initState, action) => {
     if (action.type === "LOGIN") {
@@ -17,6 +18,13 @@ const reducer = (state = initState, action) => {
             token: null
         }
     }
+    else if (action.type === "GETBESTRESTAURANTS")
+    {
+        return {
+            ...state,
+            bestRestaurants: [action.payload]
+        }
+    }
     else if (action.type === "FETCH_REVIEWS") {
         return {
             ...state,
@@ -29,7 +37,9 @@ const reducer = (state = initState, action) => {
             query: action.payload
         }
     }
-     return state;
+    else {
+        return state;
+    }
 };
 
 export default reducer;
