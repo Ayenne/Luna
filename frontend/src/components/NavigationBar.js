@@ -14,6 +14,7 @@ const NavigationBar = styled.div`
     position: fixed;
     top: 0;
     background-color: white;
+    z-index: 500;
 `;
 
 const LunaLogo = styled.img`
