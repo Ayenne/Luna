@@ -1,12 +1,23 @@
-import React, {useState} from "react";
-import Stars from "../Stars";
+import React, {useState, useEffect} from "react";
+import { connect } from "react-redux";
 
+import { getBestRestaurants } from "../../store/actions/home"
+
+import Stars from "../Stars";
 import {HomeBanner, HomeBody} from "./style"
 
-const Home = () => {
+const Home = (props) => {
 
     const [search, setSearch] = useState("");
     
+    useEffect(() => {
+        props.dispatch(getBestRestaurants())
+    }, []);
+
+    const handleBestRestaurants = () => {
+        console.log(props)
+    }
+
     return(
         <>
         <HomeBanner>
@@ -22,20 +33,59 @@ const Home = () => {
         </HomeBanner>
         <HomeBody>
             <h2>BEST RATED RESTAURANTS</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h4>RESTAURANT</h4>
-                    <p>Adress</p>
-                    <div class="card-rating">
-                        <Stars stars={3}/>
-                        <p>60</p>
+            <section>
+                <div className="card">
+                    <div className="card-body">
+                        <h4>RESTAURANT</h4>
+                        <p>Adress</p>
+                        <div className="card-rating">
+                            <Stars stars={3}/>
+                            <p>60</p>
+                        </div>
                     </div>
-                        <img />
+                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
                 </div>
-            </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h4>RESTAURANT</h4>
+                        <p>Adress</p>
+                        <div className="card-rating">
+                            <Stars stars={3}/>
+                            <p>60</p>
+                        </div>
+                    </div>
+                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h4>RESTAURANT</h4>
+                        <p>Adress</p>
+                        <div className="card-rating">
+                            <Stars stars={3}/>
+                            <p>60</p>
+                        </div>
+                    </div>
+                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h4>RESTAURANT</h4>
+                        <p>Adress</p>
+                        <div className="card-rating">
+                            <Stars stars={3}/>
+                            <p>60</p>
+                        </div>
+                    </div>
+                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
+                </div>
+            </section>
         </HomeBody>
         </>
     )
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    bestRestaurants: state.bestRestaurants
+});
+
+export default connect(mapStateToProps)(Home);

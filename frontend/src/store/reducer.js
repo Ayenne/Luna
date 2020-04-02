@@ -1,5 +1,5 @@
 const initState = {
-    token: localStorage.getItem('token'),
+    token: localStorage.getItem('token')
 }
 
 const reducer = (state = initState, action) => {
@@ -15,6 +15,17 @@ const reducer = (state = initState, action) => {
             token: null
         }
     }
+    else if (action.type === "GETBESTRESTAURANTS")
+    {
+        return {
+            ...state,
+            bestRestaurants: [action.payload]
+        }
+    }
+    else {
+        return state;
+    }
+
 }
 
 export default reducer;

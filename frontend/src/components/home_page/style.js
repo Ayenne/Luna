@@ -4,7 +4,7 @@ import Home from '../../assets/home_meat.jpg';
 
 export const HomeBanner = styled.section`
     margin-top: 72px;
-    height: 38vh;
+    height: 35vh;
     width: 100vw;
     background: url(${Home});
     background-repeat: no-repeat;
@@ -65,32 +65,45 @@ export const HomeBody = styled.section`
         color: #4c4c4c;
         font-size: 24px;
         margin-top: 30px;
-        margin-bottom: 75px; 
+        margin-bottom: 5vh; 
     }
 
-    .card {
-        width: 25%;
-        background: #fff;
-        border-top: solid 8px #e47d31;
+    section {
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
 
-        .card-body {
-            padding: 5%;
+        .card {
+            width: 23%;
+            background: #fff;
+            border-top: solid 8px #e47d31;
+            margin-bottom: 15vh;
 
-            h4 {
-                font-weight: bold;
-                text-transform: uppercase;
-            }
+            .card-body {
+                padding: 5%;
 
-            .card-rating {
-                display: flex;
-                justify-content: space-between;
-                margin: 1% 5%;
-
-                p {
-                    margin-top: 3.5%;
+                h4 {
+                    font-weight: bold;
+                    text-transform: uppercase;
                 }
+
+                .card-rating {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 1% 5%;
+
+                    p {
+                        margin-top: 3.5%;
+                    }
+                }
+
             }
 
+            .fit-img{
+                width: 100%;
+                max-height: 30vh;
+            }
         }
+
     }
 `;
