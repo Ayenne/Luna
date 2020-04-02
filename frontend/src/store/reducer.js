@@ -1,5 +1,6 @@
 const initState = {
     token: localStorage.getItem('token'),
+    bestRestaurants: [],
     reviews: [],
     query: '',
 };

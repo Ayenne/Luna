@@ -14,70 +14,57 @@ const Home = (props) => {
         props.dispatch(getBestRestaurants())
     }, []);
 
+    const searchRequest = (e) => {
+        e.preventDefault();
+        window.location.href = `/search/?search=${search}`
+    }
+
     const handleBestRestaurants = () => {
-        console.log(props)
+        let bestRestaurants = props.bestRestaurants[0];
+
+        return (
+            bestRestaurants.map(restaurant => {
+                
+                return (
+                    <div className="card" key={restaurant.id}>
+                        <div className="card-body">
+                            <h4>{restaurant.name}</h4>
+                            <p>{restaurant.street}, {restaurant.zip} {restaurant.city}, {restaurant.country}</p>
+                            <div className="card-rating">
+                                <Stars stars={3}/>
+                                <p>60</p>
+                            </div>
+                        </div>
+                        {
+                            restaurant.image ? <img className="fit-img" src={restaurant.image} alt={restaurant.name} /> : <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
+                        }
+                        
+                    </div>
+                )
+            })
+        )
+        
     }
 
     return(
         <>
         <HomeBanner>
-            <form>
+            <form onSubmit={searchRequest}>
                 <input 
                     type="text" 
                     placeholder="Search ..."
                     value={search}
                     onChange={(e) => setSearch(e.currentTarget.value)}
                 />
-                <button>Search</button>
+                <button onClick={searchRequest}>Search</button>
             </form>
         </HomeBanner>
         <HomeBody>
             <h2>BEST RATED RESTAURANTS</h2>
             <section>
-                <div className="card">
-                    <div className="card-body">
-                        <h4>RESTAURANT</h4>
-                        <p>Adress</p>
-                        <div className="card-rating">
-                            <Stars stars={3}/>
-                            <p>60</p>
-                        </div>
-                    </div>
-                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                        <h4>RESTAURANT</h4>
-                        <p>Adress</p>
-                        <div className="card-rating">
-                            <Stars stars={3}/>
-                            <p>60</p>
-                        </div>
-                    </div>
-                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                        <h4>RESTAURANT</h4>
-                        <p>Adress</p>
-                        <div className="card-rating">
-                            <Stars stars={3}/>
-                            <p>60</p>
-                        </div>
-                    </div>
-                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                        <h4>RESTAURANT</h4>
-                        <p>Adress</p>
-                        <div className="card-rating">
-                            <Stars stars={3}/>
-                            <p>60</p>
-                        </div>
-                    </div>
-                    <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
-                </div>
+                { 
+                    (props.bestRestaurants.length > 0) ? handleBestRestaurants() : <img src="https://static.impression.co.uk/2014/05/loading1.gif" />
+                }
             </section>
         </HomeBody>
         </>

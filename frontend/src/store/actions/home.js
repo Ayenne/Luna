@@ -1,8 +1,8 @@
 export const getBestRestaurants = () => async (dispatch) => {
-    const FAKEURL = "http://localhost:8000/backend/api/home/"
+    // const FAKEURL = "http://localhost:8000/backend/api/home/"
     const URL = "https://luna.propulsion-learn.ch/backend/api/home/"
 
-    const apiBestRestaurants = await fetch(FAKEURL);
+    const apiBestRestaurants = await fetch(URL);
     const responseBestRestaurants = await apiBestRestaurants.json();
 
     await dispatch({
