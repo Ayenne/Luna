@@ -1,5 +1,6 @@
 const initState = {
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    bestRestaurants: []
 }
 
 const reducer = (state = initState, action) => {

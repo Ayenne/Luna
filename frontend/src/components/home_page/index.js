@@ -16,6 +16,8 @@ const Home = (props) => {
 
     const handleBestRestaurants = () => {
         console.log(props)
+
+        
     }
 
     return(
@@ -34,6 +36,9 @@ const Home = (props) => {
         <HomeBody>
             <h2>BEST RATED RESTAURANTS</h2>
             <section>
+                { 
+                    (props.bestRestaurants.length > 0) ? handleBestRestaurants() : <img src="https://static.impression.co.uk/2014/05/loading1.gif" />
+                }
                 <div className="card">
                     <div className="card-body">
                         <h4>RESTAURANT</h4>
