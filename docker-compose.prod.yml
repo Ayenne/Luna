@@ -10,6 +10,7 @@ services:
 
   backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-11-february-2020/group-projects/scorpio/luna:master
+    restart: always
     env_file:
       - ./envs/prod.env
     command: "sh ../scripts/run.sh"
