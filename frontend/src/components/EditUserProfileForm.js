@@ -7,6 +7,8 @@ import restaurant from "../assets/restaurant.svg";
 import edit from "../assets/edit.svg";
 import StyledForm from "./StyledForm";
 import "./UserProfilePage.css";
+import NavigationBar from "./NavigationBar";
+
 
 
 
@@ -32,7 +34,8 @@ class EditUserProfileForm extends Component {
     }
 
     render() {
-        return (
+        return (<>
+            <NavigationBar location=""/>
             <div className="user-profile-main-container">
                 <div className="user-profile-banner">
                     <div className="user-profile-container">
@@ -94,47 +97,51 @@ class EditUserProfileForm extends Component {
                                             <input
                                                 type="text"
                                                 value={this.state.first_name}
-                                                onChange = {e => this.setState({"first_name": e.target.value})}
+                                                onChange={e => this.setState({"first_name": e.target.value})}
                                             />
                                             <label>Last name</label>
                                             <input
                                                 type="text"
                                                 value={this.state.last_name}
-                                                onChange = {e => this.setState({"last_name": e.target.value})}
+                                                onChange={e => this.setState({"last_name": e.target.value})}
                                             />
                                             <label>E-Mail</label>
                                             <input
                                                 type="text"
                                                 value={this.state.email}
-                                                onChange = {e => this.setState({"email": e.target.value})}
+                                                onChange={e => this.setState({"email": e.target.value})}
                                             />
                                             <label>Location</label>
                                             <input
                                                 type="text"
                                                 value={this.state.location}
-                                                onChange = {e => this.setState({"location": e.target.value})}
+                                                onChange={e => this.setState({"location": e.target.value})}
                                             />
                                             <label>Phone</label>
                                             <input
                                                 type="text"
                                                 value={this.state.phone}
-                                                onChange = {e => this.setState({"phone": e.target.value})}
+                                                onChange={e => this.setState({"phone": e.target.value})}
                                             />
                                             <label>Things I love</label>
                                             <input
                                                 type="text"
                                                 value={this.state.thinds_i_love}
-                                                onChange = {e => this.setState({"things_i_love": e.target.value})}
+                                                onChange={e => this.setState({"things_i_love": e.target.value})}
                                             />
                                             <label>Description</label>
                                             <input
                                                 type="text"
                                                 value={this.state.description}
-                                                onChange = {e => this.setState({"description": e.target.value})}
+                                                onChange={e => this.setState({"description": e.target.value})}
                                             />
                                             <div className="button-container">
-                                                <button type="submit" onClick = {(e) => this.UpdateProfileFormHandler(e)}>Save</button>
-                                                <button type="submit" onClick = {(e) => this.UpdateProfileFormHandler(e)}>Delete acount</button>
+                                                <button type="submit"
+                                                        onClick={(e) => this.UpdateProfileFormHandler(e)}>Save
+                                                </button>
+                                                <button type="submit"
+                                                        onClick={(e) => this.UpdateProfileFormHandler(e)}>Delete acount
+                                                </button>
                                             </div>
                                         </form>
                                     </StyledForm>
@@ -148,14 +155,17 @@ class EditUserProfileForm extends Component {
                                     <label>Things I love</label>
                                     <text>Everything</text>
                                     <label>Description</label>
-                                    <text>Im professional photographer with an eye for details in every thing I do in my live.
-                                        Every time a pass by a nice restaurant i have to stop and take notes</text>
+                                    <text>Im professional photographer with an eye for details in every thing I do in my
+                                        live.
+                                        Every time a pass by a nice restaurant i have to stop and take notes
+                                    </text>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 }

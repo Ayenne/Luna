@@ -140,6 +140,7 @@ class RestaurantsPage extends Component {
 }
 const mapStateToProps = (state) => {
     return {
+        token: state.token,
         restaurants: state.restaurants
     }
 };

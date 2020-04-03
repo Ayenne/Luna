@@ -219,8 +219,8 @@
   padding: 29px;
   display: flex;
   justify-content: space-between;
-
 }
+
 
 button {
   width: 200px;
@@ -238,4 +238,3 @@ button {
 a :hover {
   background: #e98539;
 }
-
