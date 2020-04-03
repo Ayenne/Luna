@@ -7,13 +7,11 @@ import LoginForm from "./LoginForm";
 import Registration from "./RegistrationPage";
 import Search from "./SearchPage";
 import Restaurant from "./restaurant_page/Restaurant"
-import RegistrationCopy from "./RegistrationCopyPage";
 
 import NavigationBar from './NavigationBar'
 import Footer from './Footer';
 import UserProfilePage from "./UserProfilePage";
 import Home from "./home_page";
-
 
 
 class App extends Component {
