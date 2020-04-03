@@ -100,7 +100,9 @@ class Restaurant extends Component {
                         <span>{this.props.restaurant.total_of_reviews}</span>
                     </Inline>
                 </article>
-                <img src={Img}></img>
+                {
+                    this.props.restaurant.image ? <img className="fit-img" src={this.props.restaurant.image} alt={this.props.restaurant.name} /> : <img src={Img}></img>
+                }
             </Tile>
         </>
     }

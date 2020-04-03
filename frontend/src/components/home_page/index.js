@@ -38,8 +38,8 @@ const Home = (props) => {
                             <h4>{restaurant.name}</h4>
                             <p>{restaurant.street}, {restaurant.zip} {restaurant.city}, {restaurant.country}</p>
                             <div className="card-rating">
-                                <Stars stars={3}/>
-                                <p>60</p>
+                                <Stars stars={restaurant.avg_rating.rating}/>
+                                <p>{restaurant.total_of_reviews}</p>
                             </div>
                         </div>
                         {
