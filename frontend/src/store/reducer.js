@@ -4,6 +4,7 @@ const initState = {
     reviews: [],
     query: '',
     current_restaurant: undefined,
+    restaurants: [],
     login_error: '',
 };
 
@@ -44,6 +45,12 @@ const reducer = (state = initState, action) => {
         return {
             ...state,
             current_restaurant: action.payload[0]
+        }
+    }
+    else if (action.type === "FETCH_RESTAURANTS") {
+        return {
+            ...state,
+            restaurants: action.payload
         }
     }
 
