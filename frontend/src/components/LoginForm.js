@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import StyledForm from './StyledForm.js';
 import loginAction from '../store/actions/login';
 import store from '../store/index';
+import {connect} from "react-redux";
+import NavigationBar from "./NavigationBar";
 
 class LoginForm extends Component {
   state = {
@@ -11,11 +13,12 @@ class LoginForm extends Component {
 
   LogIn(e) {
     e.preventDefault();
-    store.dispatch(loginAction(this.state.email, this.state.password));
+    store.dispatch(loginAction(this.state.email, this.state.password, this.props.history));
   }
 
   render() {
-    return (
+    return <>
+      <NavigationBar location=""/>
       <div className="login-form-container">
           <StyledForm>
             <h2>LOGIN</h2>
@@ -32,11 +35,22 @@ class LoginForm extends Component {
                   value={this.state.password}
                   onChange = {e => this.setState({"password": e.target.value})}
               />
+              <span>{this.props.login_error}</span>
               <button type="submit" onClick = {(e) => this.LogIn(e)}>Login</button>
             </form>
           </StyledForm>
       </div>
-    );
+    </>;
   }
 }
-export default LoginForm;
+
+const mapStateToProps = (state) => {
+    return {
+      login_error: state.login_error,
+    }
+};
+
+const connection = connect(mapStateToProps);
+const ConnectedLoginForm = connection(LoginForm);
+
+export default ConnectedLoginForm;

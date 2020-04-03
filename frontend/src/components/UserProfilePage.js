@@ -7,11 +7,13 @@ import star from "../assets/star.svg";
 import comments from "../assets/comment.svg";
 import restaurant from "../assets/restaurant.svg";
 import edit from "../assets/edit.svg";
+import NavigationBar from "./NavigationBar";
 
 
 class UserProfilePage extends Component {
   render() {
-    return (
+    return (<>
+      <NavigationBar location="profile"/>
       <div className="user-profile-main-container">
         <div className="user-profile-banner" />
 
@@ -80,6 +82,7 @@ class UserProfilePage extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }
