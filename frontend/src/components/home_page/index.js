@@ -4,14 +4,8 @@ import { connect } from "react-redux";
 import { getBestRestaurants } from "../../store/actions/home"
 
 import Stars from "../Stars";
-import {HomeBanner, HomeBody} from "./style"
+import {HomeBanner, HomeBody, HomeCard} from "./style"
 import NavigationBar from "../NavigationBar";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import LoginForm from "../LoginForm";
-import Registration from "../RegistrationPage";
-import Restaurant from "../restaurant_page/Restaurant";
-import UserProfilePage from "../UserProfilePage";
-import Footer from "../Footer";
 
 const Home = (props) => {
 
@@ -33,7 +27,7 @@ const Home = (props) => {
             bestRestaurants.map(restaurant => {
                 
                 return (
-                    <div className="card" key={restaurant.id}>
+                    <HomeCard key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                         <div className="card-body">
                             <h4>{restaurant.name}</h4>
                             <p>{restaurant.street}, {restaurant.zip} {restaurant.city}, {restaurant.country}</p>
@@ -46,7 +40,7 @@ const Home = (props) => {
                             restaurant.image ? <img className="fit-img" src={restaurant.image} alt={restaurant.name} /> : <img className="fit-img" src="https://media-cdn.tripadvisor.com/media/photo-s/12/c1/c3/f5/restaurant-araz.jpg" alt="Restaurant" />
                         }
                         
-                    </div>
+                    </HomeCard>
                 )
             })
         )
