@@ -5,10 +5,7 @@ import UserProfilePage from "./UserProfilePage";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import LoginForm from "./LoginForm";
-import Registration from "./RegistrationPage";
 import Restaurant from "./restaurant_page/Restaurant"
-import RegistrationCopy from "./RegistrationCopyPage";
 
 import Home from "./Home";
 
@@ -16,7 +13,7 @@ import './App.css';
  import LoginForm from "./LoginForm";
  import Registration from "./RegistrationPage";
  import RegistrationCopy from "./RegistrationCopyPage";
- import UserProfileItem from "./UserProfile";
+
 
 class App extends Component {
     render() {
