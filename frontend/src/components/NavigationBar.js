@@ -17,6 +17,11 @@ const NavigationBar = styled.div`
     z-index: 500;
 `;
 
+const Links = styled(Link)`
+    text-decoration: none;
+    color: black;
+`;
+
 const LunaLogo = styled.img`
     margin-left: 20px;
     width: 101px;
@@ -75,22 +80,28 @@ const LoginButton = styled(ActionButton)`
     margin-right: 20px;
 `;
 
-const NavBar = () => {
-    return (
-        <NavigationBar>
-            <LunaLogo src={logo} alt="Luna"/>
-            <NavSectionRight>
-                <Menu>
-                    <MenuItem to="/" active>Home</MenuItem>
-                    <MenuItem to="/search" className="link">Search</MenuItem>
-                    <MenuItem to="/userprofile" className="link">Profile</MenuItem>
-                </Menu>
-                <SignUpButton to="/register">SIGNUP</SignUpButton>
-                <LoginButton to="/login">LOGIN</LoginButton>
-            </NavSectionRight>
+class NavBar extends Component {
+    isActive (name) {
+        return this.props.location === name;
+    };
 
-        </NavigationBar>
-    )
+    render() {
+        return (
+            <NavigationBar>
+                <Links to='/'><LunaLogo src={logo} alt="Luna"/></Links>
+                <NavSectionRight>
+                    <Menu>
+                        <MenuItem to="/" active={this.isActive('home')}>Home</MenuItem>
+                        <MenuItem to="/search" active={this.isActive('search')}>Search</MenuItem>
+                        <MenuItem to="/userprofile" active={this.isActive('profile')}>Profile</MenuItem>
+                    </Menu>
+                    <SignUpButton to="/register">SIGNUP</SignUpButton>
+                    <LoginButton to="/login">LOGIN</LoginButton>
+                </NavSectionRight>
+
+            </NavigationBar>
+        )
+    }
 };
 
 export default NavBar;

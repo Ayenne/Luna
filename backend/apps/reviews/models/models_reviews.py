@@ -41,6 +41,11 @@ class Review(models.Model):
         related_name="fk_Review_to_Restaurant",
         on_delete=models.CASCADE
     )
+    likes = models.ManyToManyField(
+        to=User,
+        related_name='review_likes',
+        blank=True
+    )
 
     class Meta:
         ordering = ['-date_modified']

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import store from '../../../store';
 import styled from "styled-components";
 import Reviews from '../Reviews'
-
 const FilterWrapper = styled.div`    
     form {
         width: 650px;
@@ -62,7 +61,6 @@ class Filter extends Component {
                 </FilterWrapper>
             </>
         )
-
     }
 }
 

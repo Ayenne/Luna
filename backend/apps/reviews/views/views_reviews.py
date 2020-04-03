@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from django.db.models import Q
 
 from apps.restaurants.models import Restaurant
-from apps.reviews.models.models_likes import Like
 from apps.reviews.models.models_reviews import Review
 from apps.reviews.serializers.serializers_reviews import ReviewSerializer
 
@@ -53,25 +52,23 @@ class ListUserLikedReview(ListAPIView, FilterReviewMixin):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        reviews = Review.objects.filter(fk_Like_to_Review__idUser=self.request.user)
+        reviews = Review.objects.filter(likes__id=self.request.user.id)
         return self.filter_reviews(reviews)
 
 
 class LikeOrDislikeReview(GenericAPIView):
+    queryset = Review
     serializer_class = ReviewSerializer
-    queryset = Review.objects.all()
     permission_classes = [IsAuthenticated, IsNotOwner]
 
     def post(self, request, *args, **kwargs):
-        review_to_save = self.get_object()
-        user = request.user
-        like = Like.objects.filter(idUser=self.request.user, idReview=review_to_save.id)
-        if like:
-            like.delete()
-            return Response(self.get_serializer(instance=review_to_save).data)
-        like = Like(idUser=self.request.user, idReview=review_to_save)
-        like.save()
-        return Response(self.get_serializer(instance=review_to_save).data)
+        review = self.get_object()
+        if review.likes.filter(id=request.user.id).exists():
+            review.likes.remove(request.user.id)
+        else:
+            review.likes.add(request.user.id)
+        serializer = self.get_serializer(review)
+        return Response(serializer.data)
 
 
 class ListCommentedReviews(ListAPIView):

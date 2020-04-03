@@ -5,6 +5,13 @@ import { getBestRestaurants } from "../../store/actions/home"
 
 import Stars from "../Stars";
 import {HomeBanner, HomeBody} from "./style"
+import NavigationBar from "../NavigationBar";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import LoginForm from "../LoginForm";
+import Registration from "../RegistrationPage";
+import Restaurant from "../restaurant_page/Restaurant";
+import UserProfilePage from "../UserProfilePage";
+import Footer from "../Footer";
 
 const Home = (props) => {
 
@@ -48,6 +55,7 @@ const Home = (props) => {
 
     return(
         <>
+        <NavigationBar location="home"/>
         <HomeBanner>
             <form onSubmit={searchRequest}>
                 <input 

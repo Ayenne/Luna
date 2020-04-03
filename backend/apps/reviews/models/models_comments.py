@@ -37,6 +37,11 @@ class Comment(models.Model):
         null=True,
         blank=True
     )
+    likes = models.ManyToManyField(
+        to=User,
+        related_name='comment_likes',
+        blank=True
+    )
 
     class Meta:
         ordering = ['-id']
