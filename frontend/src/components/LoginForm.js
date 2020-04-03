@@ -3,6 +3,7 @@ import StyledForm from './StyledForm.js';
 import loginAction from '../store/actions/login';
 import store from '../store/index';
 import {connect} from "react-redux";
+import NavigationBar from "./NavigationBar";
 
 class LoginForm extends Component {
   state = {
@@ -16,7 +17,8 @@ class LoginForm extends Component {
   }
 
   render() {
-    return (
+    return <>
+      <NavigationBar location=""/>
       <div className="login-form-container">
           <StyledForm>
             <h2>LOGIN</h2>
@@ -38,7 +40,7 @@ class LoginForm extends Component {
             </form>
           </StyledForm>
       </div>
-    );
+    </>;
   }
 }
 

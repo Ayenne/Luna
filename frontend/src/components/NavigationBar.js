@@ -80,23 +80,28 @@ const LoginButton = styled(ActionButton)`
     margin-right: 20px;
 `;
 
-const NavBar = () => {
-    return (
-        <NavigationBar>
+class NavBar extends Component {
+    isActive (name) {
+        return this.props.location === name;
+    };
 
-            <Links to='/'><LunaLogo src={logo} alt="Luna"/></Links>
-            <NavSectionRight>
-                <Menu>
-                    <MenuItem to="/" active>Home</MenuItem>
-                    <MenuItem to="/search" className="link">Search</MenuItem>
-                    <MenuItem to="/userprofile" className="link">Profile</MenuItem>
-                </Menu>
-                <SignUpButton to="/register">SIGNUP</SignUpButton>
-                <LoginButton to="/login">LOGIN</LoginButton>
-            </NavSectionRight>
+    render() {
+        return (
+            <NavigationBar>
+                <Links to='/'><LunaLogo src={logo} alt="Luna"/></Links>
+                <NavSectionRight>
+                    <Menu>
+                        <MenuItem to="/" active={this.isActive('home')}>Home</MenuItem>
+                        <MenuItem to="/search" active={this.isActive('search')}>Search</MenuItem>
+                        <MenuItem to="/userprofile" active={this.isActive('profile')}>Profile</MenuItem>
+                    </Menu>
+                    <SignUpButton to="/register">SIGNUP</SignUpButton>
+                    <LoginButton to="/login">LOGIN</LoginButton>
+                </NavSectionRight>
 
-        </NavigationBar>
-    )
+            </NavigationBar>
+        )
+    }
 };
 
 export default NavBar;

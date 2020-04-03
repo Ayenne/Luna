@@ -5,6 +5,7 @@ import './App.css';
 
 import LoginForm from "./LoginForm";
 import Registration from "./RegistrationPage";
+import Search from "./SearchPage";
 import Restaurant from "./restaurant_page/Restaurant"
 import RegistrationCopy from "./RegistrationCopyPage";
 
@@ -19,19 +20,17 @@ class App extends Component {
     render() {
         return (
             <div>
-
                 <BrowserRouter>
-                    <NavigationBar />
-                        <Switch>
-                            <Route exact={ true } path="/" component={Home} />
-                            <Route exact={ true } path="/login" component={LoginForm} />
-                            <Route exact={ true } path="/register" component={Registration} />
-                            <Route exact={ true } path="/restaurant/:id" component={Restaurant} />
-                            <Route exact={ true } path="/userprofile" component={UserProfilePage} />
-                        </Switch>
+                    <Switch>
+                        <Route exact={ true } path="/" component={Home} />
+                        <Route exact={ true } path="/login" component={LoginForm} />
+                        <Route exact={ true } path="/register" component={Registration} />
+                        <Route exact={ true } path="/search" component={Search} />
+                        <Route exact={ true } path="/restaurant/:id" component={Restaurant} />
+                        <Route exact={ true } path="/userprofile" component={UserProfilePage} />
+                    </Switch>
                     <Footer/>
                 </BrowserRouter>
-
             </div>
         );
     }

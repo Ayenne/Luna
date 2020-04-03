@@ -4,6 +4,7 @@ import store from '../../store/index';
 import serverUrl from "../../server";
 import RestaurantView from "./layouts/restaurant_layout"
 import Review from "./Review";
+import NavigationBar from "../NavigationBar";
 
 class Restaurant extends Component{
     componentDidMount() {
@@ -45,6 +46,7 @@ class Restaurant extends Component{
    render() {
         console.log(this.props.restaurant);
         return <>
+            <NavigationBar location=""/>
             {this.props.restaurant ?
                 <RestaurantView key={this.props.restaurant.id} restaurant={this.props.restaurant}/>
              :null
