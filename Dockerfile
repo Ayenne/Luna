@@ -6,8 +6,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -qqy \
     wget \
     bzip2 \
     graphviz \
-#    libssl-dev \
-#    openssh-server
+   libssl-dev \
+   openssh-server
 
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - && apt-get install -y nodejs && apt-get install -y npm
 #RUN mkdir /var/run/sshd
