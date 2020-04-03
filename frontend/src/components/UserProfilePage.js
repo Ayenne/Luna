@@ -8,6 +8,7 @@ import comments from "../assets/comment.svg";
 import restaurant from "../assets/restaurant.svg";
 import edit from "../assets/edit.svg";
 import NavigationBar from "./NavigationBar";
+import { Link } from "react-router-dom";
 
 
 class UserProfilePage extends Component {
@@ -44,7 +45,7 @@ class UserProfilePage extends Component {
                 <div className="icon-container">
                   <img src={edit} alt=""/>
                 </div>
-                <p>Edit Profile</p>
+                <Link to={`/edituser/`}>Edit Profile</Link>
               </div>
             </div>
           </div>

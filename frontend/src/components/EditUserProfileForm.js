@@ -34,7 +34,7 @@ class EditUserProfileForm extends Component {
     render() {
         return (
             <div className="user-profile-main-container">
-                <div className="user-profile-banner" />
+                <div className="user-profile-banner">
                     <div className="user-profile-container">
                         <div className="user-profile-details-section">
                             <img src={beanie} alt=""/>
@@ -153,9 +153,11 @@ class EditUserProfileForm extends Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 
-                        )
-                        }
-                        }
-
-                        export default EditUserProfileForm;
+export default EditUserProfileForm;

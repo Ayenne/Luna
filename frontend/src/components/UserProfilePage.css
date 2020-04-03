@@ -220,6 +220,8 @@
   display: flex;
   justify-content: space-between;
 
+}
+
 button {
   width: 200px;
   height: 50px;
@@ -236,7 +238,4 @@ button {
 a :hover {
   background: #e98539;
 }
-
-}
-
 
