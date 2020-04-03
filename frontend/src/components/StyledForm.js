@@ -43,5 +43,9 @@ export default styled.div`
           margin: 5px;
           box-sizing: border-box;
       }
+      span {
+        color: red;
+        padding-top: 3px;
+      }
     }
 `;

@@ -44,6 +44,7 @@ class ListBestRestaurant(ListAPIView):
     """
     serializer_class = RestaurantSerializer
     queryset = Restaurant
+    permission_classes = []
 
     def get(self, request, *args, **kwargs):
         restaurants = Restaurant.objects.annotate(avg_rating=Avg('fk_Review_to_Restaurant__rating')).order_by('-avg_rating').all()[:4]
