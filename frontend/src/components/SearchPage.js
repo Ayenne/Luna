@@ -4,6 +4,10 @@ import styled from "styled-components";
 import Stars from "./Stars";
 import Img from '../assets/restaurant.jpeg';
 import { Link  } from "react-router-dom";
+import serverUrl from "../server";
+import store from "../store";
+import RestaurantView from "./restaurant_page/layouts/restaurant_layout";
+import {connect} from "react-redux";
 
 
 const Tile = styled(Link)`
@@ -34,8 +38,13 @@ const Tile = styled(Link)`
 `;
 const Inline = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    span {
+        margin-left: 10px;
+        margin-top: 5px;
+        font-size: 18px;
+    }
 `;
 const Restaurants = styled.div`
     padding-top: 100px;
@@ -48,40 +57,92 @@ const Page = styled.div`
     justify-content: center;
 `;
 
+
+class Search extends Component {
+
+    componentDidMount() {
+        this.fetchRestaurants()
+    }
+
+    fetchRestaurants() {
+        const base_address = serverUrl + `restaurants/`;
+
+        fetch(base_address, {
+            method: 'GET',
+            //headers: new Headers({'Authorization': 'Bearer ' + this.props.token})
+        })
+            .then((response) => response.json())
+            .then((results) => {
+                console.log(results);
+                store.dispatch({type: "FETCH_RESTAURANTS", payload: results})
+            });
+    }
+
+    render() {
+        return <>
+            <ConnectedRestaurantsPage/>
+        </>
+    }
+}
+export default Search
+
+
 class Restaurant extends Component {
     render() {
         return <>
-            <Tile to="/restaurant/3">
+            <Tile to={`/restaurant/${this.props.restaurant.id}`}>
                 <article>
-                    <h3>The Bite</h3>
-                    <h4>Address</h4>
+                    <h3>{this.props.restaurant.name}</h3>
+                    <h4>{this.props.restaurant.street}</h4>
+                    <h4>{this.props.restaurant.zip} {this.props.restaurant.city}</h4>
                     <Inline>
-                        <Stars stars={3}/>
-                        <span>68</span>
+                        <Stars stars={this.props.restaurant.avg_rating.rating}/>
+                        <span>{this.props.restaurant.total_of_reviews}</span>
                     </Inline>
                 </article>
                 <img src={Img}></img>
             </Tile>
         </>
     }
+}
+
+
+class RestaurantsPage extends Component {
+    render() {
+        console.log(this.props.restaurants)
+        return <>
+            <NavigationBar location="search"/>
+            <Page>
+                <Restaurants>
+                        {this.props.restaurants ?
+                            this.props.restaurants.map((restaurant) => {
+                                return (<Restaurant key={restaurant.id} restaurant={restaurant}/>)
+                            }) : null
+                        }
+
+                </Restaurants>
+            </Page>
+
+               {/* <Restaurants>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                    <Restaurant></Restaurant>
+                </Restaurants>*/}
+        </>
+    }
+}
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        token: state.token,
+        restaurants: state.restaurants
+    }
 };
+const connection = connect(mapStateToProps);
+const ConnectedRestaurantsPage = connection(RestaurantsPage);
 
-const Search = () => (
-    <>
-        <NavigationBar location="search"/>
-        <Page>
-        <Restaurants>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-            <Restaurant></Restaurant>
-        </Restaurants>
-        </Page>
-    </>
-);
-
-export default Search;
