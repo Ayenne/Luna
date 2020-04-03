@@ -69,7 +69,7 @@ class Search extends Component {
 
         fetch(base_address, {
             method: 'GET',
-            headers: new Headers({'Authorization': 'Bearer ' + this.props.token})
+            //headers: new Headers({'Authorization': 'Bearer ' + this.props.token})
         })
             .then((response) => response.json())
             .then((results) => {
