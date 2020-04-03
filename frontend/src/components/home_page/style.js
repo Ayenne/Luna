@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Home from '../../assets/home_meat.jpg';
+import { Link } from "react-router-dom";
 
 
 export const HomeBanner = styled.section`
@@ -73,37 +74,39 @@ export const HomeBody = styled.section`
         justify-content: space-around;
         width: 80%;
 
-        .card {
-            width: 23%;
-            background: #fff;
-            border-top: solid 8px #e47d31;
-            margin-bottom: 15vh;
+    }
+`;
 
-            .card-body {
-                padding: 5%;
+export const HomeCard = styled(Link)`
+    width: 23%;
+    background: #fff;
+    border-top: solid 8px #e47d31;
+    margin-bottom: 15vh;
+    color: #4c4c4c;
+    text-decoration: none;
 
-                h4 {
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
+    .card-body {
+        padding: 5%;
 
-                .card-rating {
-                    display: flex;
-                    justify-content: space-between;
-                    margin: 1% 5%;
+        h4 {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-                    p {
-                        margin-top: 3.5%;
-                    }
-                }
+        .card-rating {
+            display: flex;
+            justify-content: space-between;
+            margin: 1% 5%;
 
-            }
-
-            .fit-img{
-                width: 100%;
-                max-height: 30vh;
+            p {
+                margin-top: 3.5%;
             }
         }
 
     }
-`;
+
+    .fit-img{
+        width: 100%;
+        max-height: 30vh;
+    }
+`
