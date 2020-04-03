@@ -15,6 +15,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def get_current_user_liked(self, review):
         user = self.context['request'].user
+        if not user.is_authenticated:
+            return False
         if review in user.review_likes.all():
             return True
         return False
