@@ -13,11 +13,11 @@ services:
     restart: always
     env_file:
       - ./envs/prod.env
-    command: "sh /scripts/run.sh"
+    command: "sh ../scripts/run.sh"
     depends_on:
       - postgres
     volumes:
-      - frontend:/frontend
+      - frontend:/frontend/build
       - media-files:/media-files
       - static-files:/static-files
 
