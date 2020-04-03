@@ -14,7 +14,6 @@ import UserProfilePage from "./UserProfilePage";
 import Home from "./home_page";
 import EditUserProfileForm from './EditUserProfileForm';
 
-
 class App extends Component {
     render() {
         return (
