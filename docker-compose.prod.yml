@@ -17,7 +17,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - frontend:/frontend/build
+      - frontend:/frontend
       - media-files:/media-files
       - static-files:/static-files
 
