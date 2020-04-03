@@ -169,4 +169,5 @@ class EditUserProfileForm extends Component {
         )
     }
 }
-        export default EditUserProfileForm;
+
+export default EditUserProfileForm;

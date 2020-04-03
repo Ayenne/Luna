@@ -19,8 +19,8 @@ const Tile = styled(Link)`
     color: #4c4c4c;
     text-decoration: none;
     img {
-        width: 271px;
-        height: 284px;
+        width: 100%;
+        max-height: 30vh;
     }
     article {
         padding: 10px;
