@@ -14,7 +14,7 @@ const StarIcon = styled(Star)`
     width: 30px;
     height: 30px;
     opacity: 0.6;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(96%) saturate(15%) hue-rotate(212deg) brightness(104%) contrast(104%);
+    filter: brightness(0) saturate(100%) invert(99%) sepia(4%) saturate(205%) hue-rotate(60deg) brightness(114%) contrast(85%);;
     ${props => props.lit && `
         filter: brightness(0) saturate(100%) invert(80%) sepia(40%) saturate(867%) hue-rotate(4deg) brightness(109%) contrast(95%);
         opacity: 1;

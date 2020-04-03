@@ -128,7 +128,8 @@ class RestaurantView extends Component{
                                 <h3>{this.props.restaurant.category.name}</h3>
                                 <Inline>
                                     <Stars stars={this.props.restaurant.avg_rating.rating}/>
-                                    <ReviewCount>{this.props.restaurant.total_of_reviews} reviews </ReviewCount>
+                                    <ReviewCount>{this.props.restaurant.total_of_reviews} {this.props.restaurant.total_of_reviews === 1 ? 'review' : 'reviews'}
+                                    </ReviewCount>
                                 </Inline>
                             </About>
                         </CenteredContent>
